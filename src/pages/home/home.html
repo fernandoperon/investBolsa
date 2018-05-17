@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Leitura</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div [ngSwitch]="pet">
+        <ion-list *ngSwitchCase="'puppies'">
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="img/thumbnail-puppy-1.jpg">
+            </ion-thumbnail>
+            <h2>Ruby</h2>
+          </ion-item>
+          ...
+        </ion-list>
+      
+        <ion-list *ngSwitchCase="'kittens'">
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="img/thumbnail-kitten-1.jpg">
+            </ion-thumbnail>
+            <h2>Luna</h2>
+          </ion-item>
+          ...
+        </ion-list>
+      </div>
+      
+      <ion-card>
+
+        <ion-card-header>
+          <button ion-button  (click)="ler('diario', 'bovespa', 'precos', 'YAHOO')">Ler Diario Yahoo</button>
+          <button ion-button  (click)="ler('historico', 'bovespa', 'precos', 'YAHOO')">Ler Historico Yahoo</button>
+        </ion-card-header>
+
+
+        <ion-card-header>
+          <button ion-button  (click)="ler('diario', 'bovespa', 'precos', 'BF')">Ler Diario BF</button>
+          <button ion-button  (click)="ler('15min', 'bovespa', 'precos', 'BF')">Ler 15Min BF</button>
+        </ion-card-header>
+  
+        <ion-card-header>
+
+          <button ion-button  (click)="ler('diario', 'bovespa', 'precos', 'ALPHA')">Ler Diario ALPHA</button>
+          <button ion-button  (click)="ler('15min', 'bovespa', 'precos', 'ALPHA')">Ler 15Min ALPHA</button>
+          <button ion-button  (click)="ler('historico', 'bovespa', 'precos', 'ALPHA')">Ler Historico</button>
+          <button ion-button  (click)="ler('diario', 'bovespa', 'bbands', 'ALPHA')">Ler BBands</button>
+        </ion-card-header>
+
+        <ion-card-header>
+          <button ion-button  (click)="ler('diario', 'NASDAQ', 'precos', 'ALPHA')">Ler DiarioNasdaq</button>
+          <button ion-button  (click)="ler('15min', 'NASDAQ', 'precos', 'ALPHA')">Ler 15MinNasdaq</button>
+          <button ion-button  (click)="ler('historico', 'NASDAQ', 'precos', 'ALPHA')">Ler HistoricoNasdaq</button>
+        </ion-card-header>
+      </ion-card>
+  <button ion-button  (click)="teste()">Limpar base</button>  
+  <ion-card *ngIf="dadosLeitura">
+    <ion-card-header>
+      Dados Leitura
+    </ion-card-header>
+    <ion-card-content>
+      Lido(s) {{dadosLeitura.lidos}} de {{dadosLeitura.tamanho}}. Lido {{dadosLeitura.ultimoLido}}.
+    </ion-card-content>
+  </ion-card>
+</ion-content>

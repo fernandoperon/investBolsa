@@ -1,0 +1,14 @@
+{
+  "name": "myApp",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "https://query1.finance.yahoo.com/"
+    }
+  ]
+}

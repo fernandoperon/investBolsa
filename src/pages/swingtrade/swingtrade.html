@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Swingtrade
+    </ion-title>
+  </ion-navbar>
+  <div padding>
+      <ion-segment [(ngModel)]="ranking" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="rompimento">
+          Rompimento
+        </ion-segment-button>
+        <ion-segment-button value="correcao">
+          Correção
+        </ion-segment-button>
+        <ion-segment-button value="contraTendencia">
+          Contra Tend.
+        </ion-segment-button>
+        <ion-segment-button value="tendenciaAlta">
+          Em Alta
+        </ion-segment-button>        
+        <ion-segment-button value="tendenciaBaixa">
+          Em Baixa
+        </ion-segment-button>          
+      </ion-segment>
+    </div>
+  
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-md-3 *ngFor="let item of ativos">
+        <ion-card>
+          <ion-item>
+            <h2>{{getNomeAtivo(item)}}</h2>
+            <p><ion-icon name="{{item.variacao>0 ? 'arrow-round-up' : 'arrow-round-down'}}" class="balanced"></ion-icon> {{item.variacao}}%</p>
+            <ion-thumbnail item-start>
+              <img src="{{getUrlImgSymbol(item)}}" >
+            </ion-thumbnail>
+          </ion-item>
+      
+          <ion-card-content>
+            <ion-row>
+              <ion-col text-left>
+                <div>Volume: {{item.volumeProjetado}}%</div>
+              </ion-col>
+              <ion-col text-right>
+                <div>Gap: {{item.gap}}%</div>
+              </ion-col>
+
+            </ion-row>
+  
+            <div *ngIf="item.textoRompimento">Rompimento: {{item.textoRompimento}}</div>
+            <div *ngIf="item.fatoresTendenciaAlta >= 2">Fatores da Tendência de alta: {{item.fatoresTendenciaAlta}}</div>
+            <div *ngIf="item.fatoresTendenciaBaixa >= 2">Fatores da Tendência de baixa: {{item.fatoresTendenciaBaixa}}</div>
+            <div >Stop Máximo: {{item.stopMaximo}}</div>
+            <div> Volatilidade Histórica Média : {{(item.volatilidadeMedia * 100).toFixed(1)}}% </div>
+            <div *ngIf="item.distanciaMedia21Grande">Muito distante da média de 21 períodos.</div>
+            <div *ngIf="item.marteloAlta || item.marteloBaixa">Candle martelo. <span *ngIf="item.marteloProxMedia"> Próximo a média </span> </div>
+            
+          </ion-card-content>
+      
+          <ion-row>
+            <ion-col center text-right>
+              <ion-note>
+                  {{item.ultimaLeituraDiario | date:'dd/MM/yyyy HH:mm:ss'}}
+              </ion-note>
+            </ion-col>
+          </ion-row>
+      
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
