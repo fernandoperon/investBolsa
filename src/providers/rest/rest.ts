@@ -86,8 +86,8 @@ export class RestProvider {
     if (tempo == `15min`) {
       interval = `15m`;
     }
-    return this.http.get(`https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?symbol=${symbol}&period1=${periodo2}&period2=${periodo1}&interval=${interval}&includePrePost=true&events=div%7Csplit%7Cearn&lang=en-US&region=US`);
-    // return this.http.get(`http://localhost:8100/api/v8/finance/chart/${symbol}?symbol=${symbol}&period1=${periodo2}&period2=${periodo1}&interval=${interval}&includePrePost=true&events=div%7Csplit%7Cearn&lang=en-US&region=US`);
+    // return this.http.get(`https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?symbol=${symbol}&period1=${periodo2}&period2=${periodo1}&interval=${interval}&includePrePost=true&events=div%7Csplit%7Cearn&lang=en-US&region=US`);
+    return this.http.get(`http://localhost:8100/api/v8/finance/chart/${symbol}?symbol=${symbol}&period1=${periodo2}&period2=${periodo1}&interval=${interval}&includePrePost=true&events=div%7Csplit%7Cearn&lang=en-US&region=US`);
   }
 
   lerPrecosDiarios(symbol: string) {
@@ -236,7 +236,7 @@ export class RestProvider {
     if (newData == null) {
       return;
     }
- 
+
     let valores: Array<any> = newData[`data`];
     valores.reverse();
 
@@ -359,7 +359,7 @@ export class RestProvider {
       if (tempo == `15min`) {
         let fuso = (3*60*60*1000); //3 horas
         data +=  ` ` + this.formataHoraBrasil(new Date( (dataMilis * 1000) - fuso));
-      } 
+      }
       let lowAux: Number = lowArray[index];
       let highAux: Number = highArray[index];
       let closeAux: Number = closeArray[index];
@@ -383,7 +383,7 @@ export class RestProvider {
         volume: volume,
         fonte: `YAHOO`
       };
-      
+
     }
   }
 }
